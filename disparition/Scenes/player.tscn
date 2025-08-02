@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp1hvq6vx6amw"]
+
+[ext_resource type="Script" uid="uid://dswdcooce55jj" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://b0gwjucvfxi2k" path="res://Rectangle.jpg" id="1_v0iea"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+size = Vector2(59, 57)
+
+[node name="Player_main" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+collision_mask = 4
+script = ExtResource("1_cvnsp")
+
+[node name="Rectangle" type="Sprite2D" parent="Player"]
+scale = Vector2(0.172996, 0.151899)
+texture = ExtResource("1_v0iea")
+
+[node name="CollisionDecor" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_cvnsp")
+debug_color = Color(0.574, 0.481, 0.242, 0.63)
