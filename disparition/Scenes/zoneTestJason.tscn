@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://blejr6lg1qgv3"]
+
+[ext_resource type="PackedScene" uid="uid://d2srplvuwwiby" path="res://Scenes/tilesmap.tscn" id="1_go1kc"]
+[ext_resource type="PackedScene" uid="uid://7bqwnm6fx3ek" path="res://Scenes/Torche.tscn" id="1_kepbi"]
+[ext_resource type="Script" uid="uid://cwljl2m0bwna1" path="res://Scripts/zone_test_jason.gd" id="1_nckos"]
+[ext_resource type="PackedScene" uid="uid://dp1hvq6vx6amw" path="res://Scenes/player.tscn" id="2_kepbi"]
+
+[node name="zonetest" type="Node2D"]
+script = ExtResource("1_nckos")
+
+[node name="tilesmap" parent="." instance=ExtResource("1_go1kc")]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.439049, 0.439049, 0.439049, 1)
+
+[node name="Player_main" parent="." instance=ExtResource("2_kepbi")]
+position = Vector2(171, 167)
+scale = Vector2(0.5, 0.5)
+
+[node name="torches" type="Node2D" parent="."]
+
+[node name="torche_nord" type="Node2D" parent="torches"]
+
+[node name="Torche8" parent="torches/torche_nord" instance=ExtResource("1_kepbi")]
+position = Vector2(241, 41)
+
+[node name="Torche7" parent="torches/torche_nord" instance=ExtResource("1_kepbi")]
+position = Vector2(143, 41)
+
+[node name="Torche" parent="torches/torche_nord" instance=ExtResource("1_kepbi")]
+position = Vector2(385, 41)
+
+[node name="torche_sud" type="Node2D" parent="torches"]
+
+[node name="Torche3" parent="torches/torche_sud" instance=ExtResource("1_kepbi")]
+position = Vector2(272, 268)
+
+[node name="Torche4" parent="torches/torche_sud" instance=ExtResource("1_kepbi")]
+position = Vector2(131, 268)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(2, 2)

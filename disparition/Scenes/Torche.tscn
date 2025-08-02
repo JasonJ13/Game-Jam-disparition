@@ -1,0 +1,98 @@
+[gd_scene load_steps=15 format=3 uid="uid://7bqwnm6fx3ek"]
+
+[ext_resource type="Script" uid="uid://cgu26n2ajjfkm" path="res://Scripts/torche.gd" id="1_iamxq"]
+[ext_resource type="Texture2D" uid="uid://c4atci4mtk1sy" path="res://Assets/torche nord.png" id="1_wgix6"]
+[ext_resource type="Texture2D" uid="uid://cbi5a7isae16r" path="res://Assets/torche sud.png" id="3_x2ksu"]
+
+[sub_resource type="Gradient" id="Gradient_f8mjo"]
+offsets = PackedFloat32Array(0, 0.684524)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fpqlb"]
+gradient = SubResource("Gradient_f8mjo")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnvfr"]
+atlas = ExtResource("1_wgix6")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iamxq"]
+atlas = ExtResource("1_wgix6")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2ksu"]
+atlas = ExtResource("1_wgix6")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5yay"]
+atlas = ExtResource("1_wgix6")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hbwe"]
+atlas = ExtResource("3_x2ksu")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqa5g"]
+atlas = ExtResource("3_x2ksu")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7wpr"]
+atlas = ExtResource("3_x2ksu")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ia0ia"]
+atlas = ExtResource("3_x2ksu")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1hbwe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnvfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iamxq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2ksu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5yay")
+}],
+"loop": true,
+"name": &"nord",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hbwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqa5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7wpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ia0ia")
+}],
+"loop": true,
+"name": &"sud",
+"speed": 5.0
+}]
+
+[node name="Torche" type="Node2D"]
+script = ExtResource("1_iamxq")
+
+[node name="source" type="PointLight2D" parent="."]
+color = Color(0.967611, 0.51184, 0.369777, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_fpqlb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1hbwe")
+animation = &"sud"
+autoplay = "nord"
