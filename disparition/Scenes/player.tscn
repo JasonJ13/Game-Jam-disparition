@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dp1hvq6vx6amw"]
 
-[ext_resource type="Script" path="res://Scripts/player_main.gd" id="1_6t5aa"]
+[ext_resource type="Script" uid="uid://slmwrbwqvhaw" path="res://Scripts/player_main.gd" id="1_6t5aa"]
 [ext_resource type="Script" uid="uid://dswdcooce55jj" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://b0gwjucvfxi2k" path="res://Rectangle.jpg" id="1_v0iea"]
 
@@ -14,7 +14,7 @@ radius = 31.0161
 script = ExtResource("1_6t5aa")
 
 [node name="Player" type="CharacterBody2D" parent="."]
-collision_mask = 4
+collision_mask = 12
 script = ExtResource("1_cvnsp")
 
 [node name="Rectangle" type="Sprite2D" parent="Player"]

@@ -1,29 +1,29 @@
-extends CharacterBody2D
+class_name Ennemi extends CharacterBody2D
+
+
+@onready var sight: Area2D = $"../Sight"
+@onready var rectangle: Sprite2D = $"../Rectangle"
 
 
 const SPEED = 300.0
 
-var destination:Vector2i
-var current_state = State.LOOK
-
-enum State{LOOK,PATH,AGGRO}
-
-func set_dest(dest):
-	destination=dest
-
-func _physics_process(delta: float) -> void:
-	match current_state :
-		State.LOOK :
-			velocity=Vector2.ZERO
-		State.PATH :
-			velocity=SPEED*((global_position-Vector2(destination)*32).normalized())
-			
-			
+func move(direction):
+	velocity=direction*SPEED
+	RotateArea(direction)
 	move_and_slide()
+
+func is_blocked(direction):
+	return move_and_collide(direction*SPEED,true)
+
+func RotateArea(direction):
+	sight.look_at(global_position+direction)
+	rectangle.look_at(global_position+direction)
 	
-func _process(delta: float) -> void:
-	if (Vector2i(global_position)/32)==destination:
-		change_state(State.LOOK)
-		
-func change_state(state):
-	current_state=state
+func look_around(direction:Vector2):
+	var look=direction
+	for i in range(3):
+		look = look.rotated(deg_to_rad(90))
+		print(look)
+		RotateArea(look)
+		await get_tree().create_timer(1).timeout
+	RotateArea(direction)
