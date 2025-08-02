@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvs578803a2bq"]
+
+[ext_resource type="Script" uid="uid://2y87cbusvv3h" path="res://Scripts/ennemi.gd" id="1_2hvu8"]
+[ext_resource type="Texture2D" uid="uid://b0gwjucvfxi2k" path="res://Rectangle.jpg" id="1_5l417"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hvu8"]
+size = Vector2(219, 203)
+
+[node name="Ennemi_Main" type="Node2D"]
+
+[node name="Ennemi" type="CharacterBody2D" parent="."]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_2hvu8")
+
+[node name="Rectangle" type="Sprite2D" parent="Ennemi"]
+scale = Vector2(0.501582, 0.508966)
+texture = ExtResource("1_5l417")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ennemi"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_2hvu8")
+debug_color = Color(0.954105, 0.151207, 0.391803, 0.42)
