@@ -4,8 +4,10 @@ extends Node2D
 @onready var animation : AnimatedSprite2D = $AnimatedSprite2D
 @onready var source : PointLight2D = $source
 
+@export_enum("nord","sud","est","ouest") var side : String = "coté"
+
 func _ready() -> void:
-	pass
+	orientation(side)
 
 
 func _process(delta: float) -> void:
@@ -22,9 +24,9 @@ func _process(delta: float) -> void:
 		var al = randi() % 2
 		
 		if al == 0 :
-			source_level += 0.01
+			source_level += 1 * delta *2
 		else :
-			source_level -= 0.01
+			source_level -= 1 * delta *2
 	
 	source.energy = source_level
 

@@ -13,30 +13,43 @@ script = ExtResource("1_nckos")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.439049, 0.439049, 0.439049, 1)
 
-[node name="Player_main" parent="." instance=ExtResource("2_kepbi")]
-position = Vector2(171, 167)
-scale = Vector2(0.5, 0.5)
-
 [node name="torches" type="Node2D" parent="."]
 
 [node name="torche_nord" type="Node2D" parent="torches"]
 
 [node name="Torche8" parent="torches/torche_nord" instance=ExtResource("1_kepbi")]
 position = Vector2(241, 41)
+side = "nord"
 
 [node name="Torche7" parent="torches/torche_nord" instance=ExtResource("1_kepbi")]
 position = Vector2(143, 41)
+side = "nord"
 
 [node name="Torche" parent="torches/torche_nord" instance=ExtResource("1_kepbi")]
 position = Vector2(385, 41)
+side = "nord"
 
 [node name="torche_sud" type="Node2D" parent="torches"]
 
 [node name="Torche3" parent="torches/torche_sud" instance=ExtResource("1_kepbi")]
 position = Vector2(272, 268)
+side = "sud"
 
 [node name="Torche4" parent="torches/torche_sud" instance=ExtResource("1_kepbi")]
 position = Vector2(131, 268)
+side = "sud"
+
+[node name="torche_ouest" type="Node2D" parent="torches"]
+
+[node name="Torche" parent="torches/torche_ouest" instance=ExtResource("1_kepbi")]
+position = Vector2(52, 182)
+
+[node name="Torche2" parent="torches/torche_ouest" instance=ExtResource("1_kepbi")]
+position = Vector2(52, 90)
+
+[node name="Player_main" parent="." instance=ExtResource("2_kepbi")]
+position = Vector2(171, 167)
+scale = Vector2(0.5, 0.5)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
