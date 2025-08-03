@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo53ksg6v0x4s"]
+
+[ext_resource type="PackedScene" uid="uid://bvs578803a2bq" path="res://Scenes/ennemi.tscn" id="1_gb74u"]
+[ext_resource type="PackedScene" uid="uid://dp1hvq6vx6amw" path="res://Scenes/player.tscn" id="2_0qoov"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gb74u"]
+size = Vector2(62, 180)
+
+[node name="TestBis" type="Node2D"]
+
+[node name="Ennemi" parent="." instance=ExtResource("1_gb74u")]
+position = Vector2(245, 142)
+DirectionInit = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1113, 141)
+shape = SubResource("RectangleShape2D_gb74u")
+debug_color = Color(0.94159, 1.00112e-05, 0.609922, 0.42)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 4
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D"]
+position = Vector2(165, 148)
+shape = SubResource("RectangleShape2D_gb74u")
+debug_color = Color(0.94159, 1.00112e-05, 0.609922, 0.42)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-55, 224)
+collision_layer = 4
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(1081, -11)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_gb74u")
+debug_color = Color(0.94159, 1.00112e-05, 0.609922, 0.42)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="StaticBody2D2"]
+position = Vector2(-55, 224)
+collision_layer = 4
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/StaticBody2D2"]
+position = Vector2(353, -392)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_gb74u")
+debug_color = Color(0.94159, 1.00112e-05, 0.609922, 0.42)
+
+[node name="Player_main" parent="." instance=ExtResource("2_0qoov")]
+position = Vector2(629, 294)

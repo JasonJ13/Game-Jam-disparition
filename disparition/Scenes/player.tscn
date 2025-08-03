@@ -33,3 +33,5 @@ collision_mask = 24
 [node name="HitBox" type="CollisionShape2D" parent="Player/Area2D"]
 shape = SubResource("CircleShape2D_6t5aa")
 debug_color = Color(0.987084, 0, 0.316812, 0.42)
+
+[connection signal="mort" from="Player" to="." method="player_die"]

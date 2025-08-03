@@ -24,12 +24,12 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="Rectangle" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(486.5, 103)
+position = Vector2(387, -259)
 scale = Vector2(0.35865, 0.841772)
 texture = ExtResource("3_b8re4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(486.5, 92)
+position = Vector2(387, -259)
 scale = Vector2(0.35865, 0.841772)
 shape = SubResource("RectangleShape2D_p7xwr")
 debug_color = Color(0.884799, 0.213207, 0.638639, 0.42)
