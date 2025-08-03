@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvs578803a2bq"]
+
+[ext_resource type="Script" uid="uid://2y87cbusvv3h" path="res://Scripts/ennemi.gd" id="1_2hvu8"]
+[ext_resource type="Texture2D" uid="uid://b0gwjucvfxi2k" path="res://Rectangle.jpg" id="1_5l417"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5l417"]
+size = Vector2(82, 77)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hvu8"]
+size = Vector2(1160.75, 68)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2hvu8"]
+radius = 64.6297
+
+[node name="Ennemi" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 13
+script = ExtResource("1_2hvu8")
+
+[node name="Rectangle" type="Sprite2D" parent="."]
+scale = Vector2(0.175105, 0.161392)
+texture = ExtResource("1_5l417")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5l417")
+debug_color = Color(0.837689, 0.230216, 0.767366, 0.42)
+
+[node name="Sight" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="LineOfSight" type="CollisionShape2D" parent="Sight"]
+position = Vector2(608.625, 0)
+shape = SubResource("RectangleShape2D_2hvu8")
+
+[node name="Rectangle" type="Sprite2D" parent="Sight"]
+position = Vector2(200, 0)
+scale = Vector2(0.504219, 0.0427215)
+texture = ExtResource("1_5l417")
+
+[node name="Attaque" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attaque"]
+shape = SubResource("CircleShape2D_2hvu8")
+debug_color = Color(0.984612, 0, 0.341881, 0.42)
+
+[connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
+[connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]
+[connection signal="body_entered" from="Attaque" to="." method="_on_attaque_body_entered"]
