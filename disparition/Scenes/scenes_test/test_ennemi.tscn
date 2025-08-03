@@ -16,7 +16,7 @@ position = Vector2(123, 98)
 position = Vector2(495, 398)
 
 [node name="Ennemi_Main2" parent="." instance=ExtResource("1_tn1qq")]
-position = Vector2(860, 159)
+position = Vector2(612, 90)
 rotation = -1.59698
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -29,7 +29,7 @@ scale = Vector2(0.35865, 0.841772)
 texture = ExtResource("3_b8re4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(387, -259)
+position = Vector2(383, -260)
 scale = Vector2(0.35865, 0.841772)
 shape = SubResource("RectangleShape2D_p7xwr")
 debug_color = Color(0.884799, 0.213207, 0.638639, 0.42)
