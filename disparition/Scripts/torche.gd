@@ -2,15 +2,31 @@ extends Node2D
 
 
 @onready var animation : AnimatedSprite2D = $AnimatedSprite2D
+@onready var source : PointLight2D = $source
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
 	pass
+
+
+func _process(delta: float) -> void:
+	
+	var source_level = source.energy
+	
+	if source_level < 0.4 :
+		source_level += 0.05
+	
+	elif source_level > 0.6 :
+		source_level -= 0.05
+	
+	else : 
+		var al = randi() % 2
+		
+		if al == 0 :
+			source_level += 0.01
+		else :
+			source_level -= 0.01
+	
+	source.energy = source_level
 
 
 func orientation(face : String)  -> void :
