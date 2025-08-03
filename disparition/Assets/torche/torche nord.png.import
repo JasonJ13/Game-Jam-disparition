@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbi5a7isae16r"
-path="res://.godot/imported/torche sud.png-bbbc8d588ee9dedf402acf31719a3cbd.ctex"
+uid="uid://c4atci4mtk1sy"
+path="res://.godot/imported/torche nord.png-2dabeae8420c0c4a4b4b285647716bc6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/torche sud.png"
-dest_files=["res://.godot/imported/torche sud.png-bbbc8d588ee9dedf402acf31719a3cbd.ctex"]
+source_file="res://Assets/torche/torche nord.png"
+dest_files=["res://.godot/imported/torche nord.png-2dabeae8420c0c4a4b4b285647716bc6.ctex"]
 
 [params]
 
