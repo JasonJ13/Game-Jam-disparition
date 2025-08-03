@@ -46,7 +46,10 @@ func _process(delta: float) -> void:
 			direction=(player.global_position-global_position).normalized()
 			velocity=AGGRO_SPEED*direction
 			if !playerInSight:
-				change_state(State.WALK)
+				if EstEnnemiFixe:
+					change_state(State.LOOK)
+				else :
+					change_state(State.WALK)
 	
 	look_at_direction(direction)
 	move_and_slide()
