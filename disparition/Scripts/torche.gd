@@ -6,6 +6,8 @@ extends Node2D
 
 @export_enum("nord","sud","est","ouest") var side : String = "coté"
 
+var numberOnLight = 0
+
 func _ready() -> void:
 	orientation(side)
 
@@ -33,3 +35,15 @@ func _process(delta: float) -> void:
 
 func orientation(face : String)  -> void :
 	animation.play(face)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	numberOnLight += 1
+	source.enabled = false
+
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	numberOnLight -= 1
+	if numberOnLight == 0 :
+		source.enabled = true

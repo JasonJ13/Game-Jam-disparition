@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp1hvq6vx6amw"]
+[gd_scene load_steps=7 format=3 uid="uid://dp1hvq6vx6amw"]
 
 [ext_resource type="Script" uid="uid://slmwrbwqvhaw" path="res://Scripts/player_main.gd" id="1_6t5aa"]
 [ext_resource type="Script" uid="uid://dswdcooce55jj" path="res://Scripts/player.gd" id="1_cvnsp"]
@@ -9,6 +9,9 @@ size = Vector2(65, 62)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6t5aa"]
 radius = 31.0161
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6t5aa"]
+polygon = PackedVector2Array(10.3717, -13.2318, -10.3717, -13.2318, -10.3717, 13.2318, 10.3717, 13.2318)
 
 [node name="Player_main" type="Node2D"]
 script = ExtResource("1_6t5aa")
@@ -33,5 +36,9 @@ collision_mask = 24
 [node name="HitBox" type="CollisionShape2D" parent="Player/Area2D"]
 shape = SubResource("CircleShape2D_6t5aa")
 debug_color = Color(0.987084, 0, 0.316812, 0.42)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Player"]
+scale = Vector2(-3.95308, 2.72073)
+occluder = SubResource("OccluderPolygon2D_6t5aa")
 
 [connection signal="mort" from="Player" to="." method="player_die"]
