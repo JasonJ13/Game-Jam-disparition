@@ -22,3 +22,6 @@ func _physics_process(delta: float) -> void:
 
 func player_touched():
 	mort.emit()
+
+func set_pos(new_pos : Vector2) -> void :
+	position = new_pos

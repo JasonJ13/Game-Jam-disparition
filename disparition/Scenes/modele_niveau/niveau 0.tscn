@@ -35,11 +35,11 @@ position = Vector2(486, 27)
 side = "nord"
 
 [node name="Torche2" parent="Torche" instance=ExtResource("4_qwry8")]
-position = Vector2(350, 28)
+position = Vector2(350, 27)
 side = "nord"
 
 [node name="Torche3" parent="Torche" instance=ExtResource("4_qwry8")]
-position = Vector2(350, 156)
+position = Vector2(350, 155)
 side = "nord"
 
 [node name="Torche4" parent="Torche" instance=ExtResource("4_qwry8")]
@@ -51,7 +51,7 @@ position = Vector2(350, 283)
 side = "nord"
 
 [node name="Torche6" parent="Torche" instance=ExtResource("4_qwry8")]
-position = Vector2(487, 284)
+position = Vector2(487, 283)
 side = "nord"
 
 [connection signal="body_entered" from="fin" to="." method="zone_fin_atteinte"]

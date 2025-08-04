@@ -35,15 +35,3 @@ func _process(delta: float) -> void:
 
 func orientation(face : String)  -> void :
 	animation.play(face)
-
-
-func _on_area_2d_body_entered() -> void:
-	numberOnLight += 1
-	source.enabled = false
-
-
-
-func _on_area_2d_body_exited() -> void:
-	numberOnLight -= 1
-	if numberOnLight == 0 :
-		source.enabled = true

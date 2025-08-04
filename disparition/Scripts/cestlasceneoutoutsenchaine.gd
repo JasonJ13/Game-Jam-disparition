@@ -2,12 +2,13 @@ extends Node2D
 
 @export var nmb_niveau = 7
 
-@onready var player : Node2D = $Player_main
+@onready var player : Node2D = $Player_main/Player
 
 var niveau_indice = 0
 var niveau_act
 var niveau : Array[PackedScene] = []
 
+var b = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,13 +27,24 @@ func _process(delta: float) -> void:
 	pass
 
 
+func new_level() -> void :
+	niveau_act.queue_free()
+	niveau_indice += 1
+
+	niveau_act = niveau[niveau_indice].instantiate()
+		
+	niveau_act.init_level(player)
+	player.position = niveau_act.get_debut()
+		
+	add_child(niveau_act)
+
+
 func level_suivant() -> void:
+	if b :
+		call_deferred("new_level")
+		b = false
+	else :
+		b = true
 
-	if niveau_indice == 0 :
-		niveau_act.queue_free()
-		niveau_indice += 1
 
-		niveau_act = niveau[niveau_indice].instantiate()
-
-		niveau_act.init_level(player)
-		add_child(niveau_act)
+	
