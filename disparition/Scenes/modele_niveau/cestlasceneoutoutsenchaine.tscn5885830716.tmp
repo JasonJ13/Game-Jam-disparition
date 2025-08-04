@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://0giawt4i6ql8"]
+
+[ext_resource type="Script" uid="uid://cgm2lppxlf5wy" path="res://Scripts/cestlasceneoutoutsenchaine.gd" id="1_gxsui"]
+[ext_resource type="PackedScene" uid="uid://dp1hvq6vx6amw" path="res://Scenes/player.tscn" id="2_aaxql"]
+
+[node name="toutsenchaine" type="Node2D"]
+script = ExtResource("1_gxsui")
+nmb_niveau = null
+
+[node name="Player_main" parent="." instance=ExtResource("2_aaxql")]
+z_index = 1
+
+[node name="Camera" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(1.4, 1.4)

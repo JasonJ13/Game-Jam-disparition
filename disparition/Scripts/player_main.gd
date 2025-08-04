@@ -11,4 +11,3 @@ func _process(delta: float) -> void:
 
 func player_die():
 	print("mort")
-	
