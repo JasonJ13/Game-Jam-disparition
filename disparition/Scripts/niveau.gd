@@ -34,12 +34,14 @@ func reaparition() -> void :
 		est_tuile_effacee = false
 		
 		tiles.set_cell(tuile_effacee, 0,Vector2i(0,0))
-		tiles.set_cells_terrain_connect([tuile_effacee],0,0)
+		
 		for neighbor in tiles.get_surrounding_cells(tuile_effacee) :
 			altasneighbor = tiles.get_cell_atlas_coords(neighbor)
 			if altasneighbor.x > 3 || altasneighbor.y < 4 :
 				tiles.erase_cell(neighbor)
 				tiles.set_cells_terrain_connect([neighbor],0,0)
+		
+		tiles.set_cells_terrain_connect([tuile_effacee],0,0)
 	
 	elif est_corps_efface :
 		est_corps_efface = false

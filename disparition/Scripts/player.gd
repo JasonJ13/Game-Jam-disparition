@@ -47,9 +47,9 @@ func lancer_sort() :
 		
 		nouveau_sort.position = position
 		if abs(c) > abs(s) :
-			nouveau_sort.position.x += 48 * abs(c)/c
+			nouveau_sort.position.x += 32 * abs(c)/c
 		else :
-			nouveau_sort.position.y += 48 * abs(s)/s
+			nouveau_sort.position.y += 32 * abs(s)/s
 
 		angle = nouveau_sort.position.angle_to_point(get_global_mouse_position())
 		
