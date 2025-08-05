@@ -2,7 +2,7 @@ extends Node2D
 
 @export var nmb_niveau = 7
 
-@onready var player : Node2D = $Player_main/Player
+@onready var player : Node2D = $Player
 
 var niveau_indice = 0
 var niveau_act
@@ -39,12 +39,25 @@ func new_level() -> void :
 	add_child(niveau_act)
 
 
-func level_suivant() -> void:
-	if b :
-		call_deferred("new_level")
-		b = false
-	else :
-		b = true
+func level_suivant(body : Node2D) -> void:
+	if body == player :
+		if b :
+			call_deferred("new_level")
+			b = false
+		else :
+			b = true
 
+
+func disparition_mur(position_mur : Vector2i) :
+	niveau_act.disparition_mur(position_mur)
+	player.sort_possible = true
+
+func disparition_corps(corps : Node2D) :
+	if corps != player :
+		niveau_act.disparition_corps(corps)
+		player.sort_possible = true
+
+func ocus_fail() :
+	player.sort_possible = true
 
 	
