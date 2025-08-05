@@ -1,44 +1,37 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp1hvq6vx6amw"]
+[gd_scene load_steps=6 format=3 uid="uid://bct4wkourekun"]
 
-[ext_resource type="Script" uid="uid://slmwrbwqvhaw" path="res://Scripts/player_main.gd" id="1_6t5aa"]
-[ext_resource type="Script" uid="uid://dswdcooce55jj" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://b0gwjucvfxi2k" path="res://Rectangle.jpg" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://dswdcooce55jj" path="res://Scripts/player.gd" id="1_e21d1"]
+[ext_resource type="Texture2D" uid="uid://b0gwjucvfxi2k" path="res://Rectangle.jpg" id="2_qf216"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pcky6"]
 size = Vector2(65, 62)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6t5aa"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_rbx2y"]
 radius = 31.0161
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6t5aa"]
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_42d52"]
 polygon = PackedVector2Array(10.3717, -13.2318, -10.3717, -13.2318, -10.3717, 13.2318, 10.3717, 13.2318)
 
-[node name="Player_main" type="Node2D"]
-script = ExtResource("1_6t5aa")
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("1_e21d1")
 
-[node name="Player" type="CharacterBody2D" parent="."]
-collision_mask = 12
-script = ExtResource("1_cvnsp")
-
-[node name="Rectangle" type="Sprite2D" parent="Player"]
+[node name="Rectangle" type="Sprite2D" parent="."]
 scale = Vector2(0.172996, 0.151899)
-texture = ExtResource("1_v0iea")
+texture = ExtResource("2_qf216")
 
-[node name="CollisionDecor" type="CollisionShape2D" parent="Player"]
+[node name="CollisionDecor" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_cvnsp")
+shape = SubResource("RectangleShape2D_pcky6")
 debug_color = Color(0.574, 0.481, 0.242, 0.63)
 
-[node name="Area2D" type="Area2D" parent="Player"]
+[node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 24
 
-[node name="HitBox" type="CollisionShape2D" parent="Player/Area2D"]
-shape = SubResource("CircleShape2D_6t5aa")
+[node name="HitBox" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_rbx2y")
 debug_color = Color(0.987084, 0, 0.316812, 0.42)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Player"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 scale = Vector2(-3.95308, 2.72073)
-occluder = SubResource("OccluderPolygon2D_6t5aa")
-
-[connection signal="mort" from="Player" to="." method="player_die"]
+occluder = SubResource("OccluderPolygon2D_42d52")
