@@ -1,10 +1,11 @@
 class_name PlayerBody extends CharacterBody2D
 
 const SPEED = 300.0
-signal mort(body)
+
 
 const sort = preload("res://Scenes/ocuspocus.tscn")
 var sort_possible = true
+var est_visible=false
 
 func _physics_process(delta: float) -> void:
 	
@@ -61,3 +62,6 @@ func lancer_sort() :
 		nouveau_sort.init(Vector2(coord_x,coord_y))
 		
 		get_parent().add_child(nouveau_sort)
+
+func change_visibilte(visible:bool):
+	est_visible=visible

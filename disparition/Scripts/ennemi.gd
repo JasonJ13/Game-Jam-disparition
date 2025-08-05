@@ -13,14 +13,14 @@ const DIRECTIONS = [Vector2.LEFT,Vector2.UP,Vector2.RIGHT,Vector2.DOWN]
 var index:int
 
 var currentState : State
-var player:CharacterBody2D
+var player:PlayerBody
 var playerDetected:bool
 var playerInSight:bool
 
 var direction:Vector2
 
 const SPEED = 300.0
-const AGGRO_SPEED = 350.0
+const AGGRO_SPEED = 400.0
 
 func _ready() -> void:
 	index=DirectionInit
@@ -85,7 +85,7 @@ func sight_check():
 	var space_state = get_world_2d().direct_space_state
 	var sightParameters = PhysicsRayQueryParameters2D.create(global_position,player.global_position,collision_mask,[self])
 	var sight_check = space_state.intersect_ray(sightParameters)
-	if len(sight_check)>0 and sight_check["collider"] is PlayerBody:
+	if len(sight_check)>0 and sight_check["collider"] is PlayerBody and player.est_visible:
 		playerInSight=true
 		change_state(State.AGGRO)
 	else:
@@ -103,5 +103,5 @@ func look_at_direction(dir):
 func _on_attaque_body_entered(body: Node2D) -> void:
 	for col in attaque.get_overlapping_bodies():
 		if col is PlayerBody:
-			print(col)
 			col.player_touched()
+			

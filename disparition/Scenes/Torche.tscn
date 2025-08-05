@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://7bqwnm6fx3ek"]
+[gd_scene load_steps=26 format=3 uid="uid://7bqwnm6fx3ek"]
 
 [ext_resource type="Script" uid="uid://cgu26n2ajjfkm" path="res://Scripts/torche.gd" id="1_iamxq"]
 [ext_resource type="Texture2D" uid="uid://c4atci4mtk1sy" path="res://Assets/torche/torche nord.png" id="1_wgix6"]
@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cbi5a7isae16r" path="res://Assets/torche/torche sud.png" id="3_x2ksu"]
 
 [sub_resource type="Gradient" id="Gradient_f8mjo"]
-offsets = PackedFloat32Array(0, 0.684524)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.684524, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fpqlb"]
 gradient = SubResource("Gradient_f8mjo")
@@ -152,6 +152,9 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_f5yay"]
+radius = 123.004
+
 [node name="Torche" type="Node2D"]
 script = ExtResource("1_iamxq")
 side = "ouest"
@@ -166,3 +169,12 @@ texture = SubResource("GradientTexture2D_fpqlb")
 sprite_frames = SubResource("SpriteFrames_1hbwe")
 animation = &"ouest"
 autoplay = "nord"
+
+[node name="ZoneDetection" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneDetection"]
+shape = SubResource("CircleShape2D_f5yay")
+
+[connection signal="body_entered" from="ZoneDetection" to="." method="_on_zone_detection_body_entered"]
+[connection signal="body_exited" from="ZoneDetection" to="." method="_on_zone_detection_body_exited"]

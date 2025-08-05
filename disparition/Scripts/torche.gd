@@ -35,3 +35,14 @@ func _process(delta: float) -> void:
 
 func orientation(face : String)  -> void :
 	animation.play(face)
+
+
+func _on_zone_detection_body_entered(body: Node2D) -> void:
+	if body is PlayerBody:
+		body.change_visibilte(true)
+
+
+func _on_zone_detection_body_exited(body: Node2D) -> void:
+	if body is PlayerBody:
+		body.change_visibilte(false)
+		

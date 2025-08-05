@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c04yv7bs22jkn"]
+[gd_scene load_steps=6 format=3 uid="uid://c04yv7bs22jkn"]
 
 [ext_resource type="PackedScene" uid="uid://bvs578803a2bq" path="res://Scenes/ennemi.tscn" id="1_tn1qq"]
 [ext_resource type="PackedScene" uid="uid://dp1hvq6vx6amw" path="res://Scenes/player.tscn" id="2_b8re4"]
 [ext_resource type="Texture2D" uid="uid://b0gwjucvfxi2k" path="res://Rectangle.jpg" id="3_b8re4"]
+[ext_resource type="PackedScene" uid="uid://7bqwnm6fx3ek" path="res://Scenes/Torche.tscn" id="4_p7xwr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p7xwr"]
 size = Vector2(499.094, 503.699)
@@ -11,25 +12,25 @@ size = Vector2(499.094, 503.699)
 
 [node name="Ennemi_Main" parent="." instance=ExtResource("1_tn1qq")]
 position = Vector2(123, 98)
+EstEnnemiFixe = true
 
 [node name="Player_main" parent="." instance=ExtResource("2_b8re4")]
 position = Vector2(495, 398)
-
-[node name="Ennemi_Main2" parent="." instance=ExtResource("1_tn1qq")]
-position = Vector2(612, 90)
-rotation = -1.59698
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 4
 collision_mask = 0
 
 [node name="Rectangle" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(387, -259)
+position = Vector2(353, -176)
 scale = Vector2(0.35865, 0.841772)
 texture = ExtResource("3_b8re4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(383, -260)
+position = Vector2(352, -181)
 scale = Vector2(0.35865, 0.841772)
 shape = SubResource("RectangleShape2D_p7xwr")
 debug_color = Color(0.884799, 0.213207, 0.638639, 0.42)
+
+[node name="Torche" parent="." instance=ExtResource("4_p7xwr")]
+position = Vector2(783, 75)
