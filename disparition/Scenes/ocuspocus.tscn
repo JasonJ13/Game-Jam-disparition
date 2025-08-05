@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b76ycf7pu6rrg"]
+[gd_scene load_steps=5 format=3 uid="uid://b76ycf7pu6rrg"]
 
 [ext_resource type="Script" uid="uid://bovlcq0db7q2y" path="res://Scripts/ocuspocus.gd" id="1_ohy3a"]
 [ext_resource type="Texture2D" uid="uid://b0gwjucvfxi2k" path="res://Rectangle.jpg" id="2_7vbda"]
@@ -6,9 +6,12 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ohy3a"]
 radius = 0.5
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7vbda"]
+radius = 2.0
+
 [node name="Node2D" type="RigidBody2D"]
-collision_layer = 7
-collision_mask = 7
+collision_layer = 13
+collision_mask = 21
 gravity_scale = 0.0
 script = ExtResource("1_ohy3a")
 
@@ -18,3 +21,12 @@ texture = ExtResource("2_7vbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ohy3a")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_7vbda")
+
+[connection signal="body_entered" from="Area2D" to="." method="ocuspocusbody"]
