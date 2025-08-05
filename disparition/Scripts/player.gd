@@ -3,6 +3,8 @@ class_name PlayerBody extends CharacterBody2D
 const SPEED = 300.0
 signal mort(body)
 
+const sort = preload("res://Scenes/ocuspocus.tscn")
+var sort_possible = true
 
 func _physics_process(delta: float) -> void:
 	
@@ -16,12 +18,46 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x,0,SPEED)
 		velocity.y = move_toward(velocity.y,0,SPEED)
 
+	if Input.is_action_just_pressed("lancer un sort") :
+		lancer_sort()
+
 	move_and_slide()
 
 
 
 func player_touched():
-	mort.emit()
+	print("t mort lol")
 
 func set_pos(new_pos : Vector2) -> void :
 	position = new_pos
+
+
+func lancer_sort() :
+	if sort_possible :
+		#sort_possible = false
+
+		var angle = position.angle_to_point(get_global_mouse_position())
+		var nouveau_sort = sort.instantiate()
+		
+		
+		
+		var c = cos(angle)
+		var s = sin(angle)
+		
+		nouveau_sort.position = position
+		if abs(c) > abs(s) :
+			nouveau_sort.position.x += 32 * abs(c)/c
+		else :
+			nouveau_sort.position.y += 32 * abs(s)/s
+
+		angle = nouveau_sort.position.angle_to_point(get_global_mouse_position())
+		
+		c = cos(angle)
+		s = sin(angle)
+		
+		var coord_x = 512*c
+		var coord_y = 512*s
+		
+		nouveau_sort.init(Vector2(coord_x,coord_y))
+		
+		get_parent().add_child(nouveau_sort)

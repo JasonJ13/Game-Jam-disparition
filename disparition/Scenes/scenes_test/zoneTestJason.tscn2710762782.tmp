@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://7bqwnm6fx3ek" path="res://Scenes/Torche.tscn" id="3_rve0l"]
 [ext_resource type="PackedScene" uid="uid://csjpxr65v3w1o" path="res://Scenes/tilemap.tscn" id="4_6rr7a"]
 [ext_resource type="PackedScene" uid="uid://b76ycf7pu6rrg" path="res://Scenes/ocuspocus.tscn" id="4_avsny"]
-[ext_resource type="PackedScene" uid="uid://bct4wkourekun" path="res://Scenes/player.tscn" id="5_avsny"]
+[ext_resource type="PackedScene" uid="uid://dp1hvq6vx6amw" path="res://Scenes/player.tscn" id="4_usder"]
 
 [node name="zonetest" type="Node2D"]
 script = ExtResource("1_avsny")
@@ -28,15 +28,14 @@ side = "nord"
 position = Vector2(385, 41)
 side = "nord"
 
+[node name="Player_main" parent="." instance=ExtResource("4_usder")]
+position = Vector2(172, 167)
+scale = Vector2(0.5, 0.5)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 zoom = Vector2(2, 2)
 
 [node name="Node2D" parent="." instance=ExtResource("4_avsny")]
-position = Vector2(326, 95)
-
-[node name="player" parent="." instance=ExtResource("5_avsny")]
-position = Vector2(172, 173)
-scale = Vector2(0.5, 0.5)
-collision_layer = 5
-collision_mask = 5
+position = Vector2(90, 106)
+direction_mult = true

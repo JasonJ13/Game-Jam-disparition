@@ -1,33 +1,17 @@
-extends Node
-class_name Niveau
+extends Node2D
 
-var player : CharacterBody2D
-var debut : Node2D
-var tiles : TileMapLayer
+@onready var tiles : TileMapLayer= $TileMapLayer
 
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
 
-func init_level(p : Node2D) -> void :
-	debut = $debut
-	
-	player = p
-	player.set_pos(debut.position)
-	
-
-
-
-func zone_fin_atteinte(body: Node2D) -> void:
-
-	get_parent().level_suivant()
-
-
-func get_debut() -> Vector2 :
-	return debut.position
-
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
 
 
 func disparition_mur(position_mur : Vector2i) -> void :
-	tiles = $TileMapLayer
-	
 	var altasneighbor
 	tiles.set_cell(position_mur, 0, Vector2i(2,4))
 	for neighbor in tiles.get_surrounding_cells(position_mur) :
