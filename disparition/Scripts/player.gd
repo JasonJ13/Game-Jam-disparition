@@ -35,29 +35,29 @@ func set_pos(new_pos : Vector2) -> void :
 func lancer_sort() :
 	if sort_possible :
 		#sort_possible = false
-		
-		var sort_scene = sort.instantiate()
-		
-		
+
 		var angle = position.angle_to_point(get_global_mouse_position())
-		
 		var nouveau_sort = sort.instantiate()
 		
-		var coord_x = 512*cos(angle)*abs(cos(angle))
-		var coord_y = 512*sin(angle)*abs(sin(angle))
-		print(coord_x," " ,coord_y)
 		
-		nouveau_sort.init(Vector2(coord_x,coord_y))
-		
-		nouveau_sort.position = position
 		
 		var c = cos(angle)
 		var s = sin(angle)
 		
+		nouveau_sort.position = position
 		if abs(c) > abs(s) :
 			nouveau_sort.position.x += 32 * abs(c)/c
 		else :
 			nouveau_sort.position.y += 32 * abs(s)/s
+
+		angle = nouveau_sort.position.angle_to_point(get_global_mouse_position())
+		
+		c = cos(angle)
+		s = sin(angle)
+		
+		var coord_x = 512*c
+		var coord_y = 512*s
+		
+		nouveau_sort.init(Vector2(coord_x,coord_y))
 		
 		get_parent().add_child(nouveau_sort)
-		print()
