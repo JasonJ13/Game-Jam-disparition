@@ -1,23 +1,27 @@
 extends RigidBody2D
 
-@export var direction_mult : bool = true
 var debut : Vector2
 
 var compt_frame : int = 0
 var ind_sprite : int = 0
 var angle : float = 0
 
+var previous_velo
+
 func init(cf : Vector2, a : float) -> void :
 	constant_force = cf
 	linear_velocity = cf
 	angle = a
+	previous_velo = cf
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if linear_velocity == Vector2(0,0) || (direction_mult && linear_velocity.x * linear_velocity.y == 0) :
+	if linear_velocity.distance_to(previous_velo) > 50 :
 		get_parent().disparition_mur(Vector2i(position)/64)
 		queue_free()
+	
+	previous_velo = linear_velocity
 	
 	if position.x <0 || position.y < 0 || position.x > 1000 || position.y> 700 :
 		get_parent().ocus_fail()
