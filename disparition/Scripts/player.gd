@@ -1,7 +1,7 @@
 class_name PlayerBody extends CharacterBody2D
 
 const SPEED = 300.0
-
+var deltaw : float
 
 const sort = preload("res://Scenes/ocuspocus.tscn")
 var sort_possible = true
@@ -11,6 +11,8 @@ func _physics_process(delta: float) -> void:
 	
 	var direction_x = Input.get_axis("Gauche","Droite")
 	var direction_y = Input.get_axis("Haut","Bas")
+	
+	
 	
 	var direction = Vector2(direction_x,direction_y).normalized()
 	if direction:
@@ -23,6 +25,8 @@ func _physics_process(delta: float) -> void:
 		lancer_sort()
 
 	move_and_slide()
+	
+	deltaw =delta
 
 
 
@@ -56,10 +60,10 @@ func lancer_sort() :
 		c = cos(angle)
 		s = sin(angle)
 		
-		var coord_x = 512*c
-		var coord_y = 512*s
-		
-		nouveau_sort.init(Vector2(coord_x,coord_y))
+		var coord_x = 12*c/deltaw
+		var coord_y = 12*s/deltaw
+	
+		nouveau_sort.init(Vector2(coord_x,coord_y),angle)
 		
 		get_parent().add_child(nouveau_sort)
 
