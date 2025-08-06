@@ -7,22 +7,26 @@ var tiles : TileMapLayer
 
 var tuile_effacee : Vector2i
 var est_tuile_effacee : bool
-var altasneighbor : Vector2i
+var altasvoisin : Vector2i
 
 var corps_efface : Node2D
 var est_corps_efface : bool
+
+var level_finissable = false
 
 func init_level(p : Node2D) -> void :
 	debut = $debut
 	
 	player = p
-	print(player)
 	player.set_pos(debut.position)
 	
+	while player.position != debut.position :
+		pass
+	level_finissable = true
 
 func zone_fin_atteinte(body: Node2D) -> void:
-
-	get_parent().level_suivant(body)
+	if level_finissable :
+		get_parent().level_suivant(body)
 
 
 func get_debut() -> Vector2 :
@@ -33,15 +37,14 @@ func reaparition() -> void :
 	if est_tuile_effacee :
 		est_tuile_effacee = false
 		
-		tiles.set_cell(tuile_effacee, 0,Vector2i(0,0))
+		tiles.set_cell(tuile_effacee, 0,Vector2i(0,3))
+		for voisin in tiles.get_surrounding_cells(tuile_effacee) :
+			altasvoisin = tiles.get_cell_atlas_coords(voisin)
+			
+			if ( altasvoisin.x > 3 || altasvoisin.y < 4) && altasvoisin != Vector2i(-1,-1):
+				tiles.set_cells_terrain_connect([voisin],0,0, false)
 		
-		for neighbor in tiles.get_surrounding_cells(tuile_effacee) :
-			altasneighbor = tiles.get_cell_atlas_coords(neighbor)
-			if altasneighbor.x > 3 || altasneighbor.y < 4 :
-				tiles.erase_cell(neighbor)
-				tiles.set_cells_terrain_connect([neighbor],0,0)
-		
-		tiles.set_cells_terrain_connect([tuile_effacee],0,0)
+
 	
 	elif est_corps_efface :
 		est_corps_efface = false
@@ -56,16 +59,19 @@ func disparition_mur(position_mur : Vector2i) -> void :
 	
 	tiles = $TileMapLayer
 
-	reaparition()
-	est_tuile_effacee = true
-	
-	tiles.set_cell(position_mur, 0, Vector2i(2,4))
-	for neighbor in tiles.get_surrounding_cells(position_mur) :
-		altasneighbor = tiles.get_cell_atlas_coords(neighbor)
-		if altasneighbor.x > 3 || altasneighbor.y < 4 :
-			tiles.erase_cell(neighbor)
-			tiles.set_cells_terrain_connect([neighbor],0,0)
-	tuile_effacee = position_mur
+	if position_mur.x > 0 && position_mur.x < 12 && position_mur.y >= 0 && position_mur.y < 7:
+		reaparition()
+		est_tuile_effacee = true
+
+		tiles.set_cell(position_mur, 0, Vector2i(2,4))
+		for voisin in tiles.get_surrounding_cells(position_mur) :
+			altasvoisin = tiles.get_cell_atlas_coords(voisin)
+			if( altasvoisin.x > 3 || altasvoisin.y < 4) :
+				tiles.set_cells_terrain_connect([voisin],0,-1, false)
+				tiles.set_cells_terrain_connect([voisin],0,0, false)
+		tuile_effacee = position_mur
+		
+		
 
 func disparition_corps(body : Node2D) -> void :
 	tiles = $TileMapLayer

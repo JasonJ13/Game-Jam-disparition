@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://7bqwnm6fx3ek"]
+[gd_scene load_steps=26 format=3 uid="uid://7bqwnm6fx3ek"]
 
 [ext_resource type="Script" uid="uid://cgu26n2ajjfkm" path="res://Scripts/torche.gd" id="1_iamxq"]
 [ext_resource type="Texture2D" uid="uid://c4atci4mtk1sy" path="res://Assets/torche/torche nord.png" id="1_wgix6"]
@@ -155,12 +155,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_f5yay"]
 radius = 123.004
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5yay"]
-size = Vector2(12, 14)
-
-[node name="Torche" type="StaticBody2D"]
-collision_layer = 17
-collision_mask = 17
+[node name="Torche" type="Node2D"]
 script = ExtResource("1_iamxq")
 side = "ouest"
 
@@ -180,10 +175,6 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneDetection"]
 shape = SubResource("CircleShape2D_f5yay")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0)
-shape = SubResource("RectangleShape2D_f5yay")
 
 [connection signal="body_entered" from="ZoneDetection" to="." method="_on_zone_detection_body_entered"]
 [connection signal="body_exited" from="ZoneDetection" to="." method="_on_zone_detection_body_exited"]

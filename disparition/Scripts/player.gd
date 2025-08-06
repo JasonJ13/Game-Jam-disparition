@@ -60,8 +60,8 @@ func lancer_sort() :
 		c = cos(angle)
 		s = sin(angle)
 		
-		var coord_x = 12*c/deltaw
-		var coord_y = 12*s/deltaw
+		var coord_x = 10*c/deltaw
+		var coord_y = 10*s/deltaw
 	
 		nouveau_sort.init(Vector2(coord_x,coord_y),angle)
 		
