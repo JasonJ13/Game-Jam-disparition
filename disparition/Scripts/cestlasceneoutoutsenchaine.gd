@@ -10,6 +10,8 @@ var niveau : Array[PackedScene] = []
 
 var b = true
 
+var sort_sprite_preload = preload("res://Scenes/sort_sprite.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -61,3 +63,10 @@ func ocus_fail() :
 	player.sort_possible = true
 
 	
+func ajouter_sort_couche(indice : int, angle : float, p : Vector2) :
+	var nouveau_sprit_sort = sort_sprite_preload.instantiate()
+	
+	nouveau_sprit_sort.init(indice, angle, p)
+	print(nouveau_sprit_sort.position)
+	
+	add_child(nouveau_sprit_sort)

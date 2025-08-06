@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://cgkeg53llrkv1"]
+
+[ext_resource type="Texture2D" uid="uid://da5n5pflggiq1" path="res://Assets/sort.png" id="1_5y6s8"]
+[ext_resource type="Script" uid="uid://6yhnawbcbt75" path="res://Scripts/sort_sprite.gd" id="2_u0ro3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0ro3"]
+atlas = ExtResource("1_5y6s8")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iaj22"]
+atlas = ExtResource("1_5y6s8")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oru5i"]
+atlas = ExtResource("1_5y6s8")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63nek"]
+atlas = ExtResource("1_5y6s8")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gys1w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0ro3")
+}],
+"loop": true,
+"name": &"sort0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iaj22")
+}],
+"loop": true,
+"name": &"sort1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oru5i")
+}],
+"loop": true,
+"name": &"sort2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63nek")
+}],
+"loop": true,
+"name": &"sort3",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_u0ro3"]
+offsets = PackedFloat32Array(0.208333, 0.779762)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iaj22"]
+gradient = SubResource("Gradient_u0ro3")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.491379, 0.491379)
+
+[node name="Node2D" type="AnimatedSprite2D"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_gys1w")
+animation = &"sort3"
+autoplay = "sort3"
+script = ExtResource("2_u0ro3")
+
+[node name="lumiere" type="PointLight2D" parent="."]
+energy = 0.2
+texture = SubResource("GradientTexture2D_iaj22")
