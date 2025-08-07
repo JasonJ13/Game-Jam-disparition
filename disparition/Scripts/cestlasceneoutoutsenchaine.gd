@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var nmb_niveau = 7
+@export var nmb_niveau = 12
 
 @onready var player : Node2D = $Player
 
@@ -29,17 +29,22 @@ func new_level() -> void :
 	
 	player.position = Vector2(0,0)
 	
-	if niveau_indice != 0 :
-		niveau_act.queue_free()
-	
-	niveau_act = niveau[niveau_indice].instantiate()
-	
-	niveau_act.init_level(player)
-	player.position = niveau_act.get_debut()
+	if niveau_indice == 12 :
+		print('bravo') 
+		queue_free()
+	else :
+		if niveau_indice != 0 :
+			niveau_act.queue_free()
 		
-	add_child(niveau_act)
-	
-	niveau_indice += 1
+		
+		niveau_act = niveau[niveau_indice].instantiate()
+		
+		niveau_act.init_level(player)
+		player.position = niveau_act.get_debut()
+			
+		add_child(niveau_act)
+		
+		niveau_indice += 1
 	
 
 
