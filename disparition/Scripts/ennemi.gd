@@ -3,9 +3,11 @@ class_name Ennemi extends CharacterBody2D
 @onready var sight: Area2D = $Sight
 @onready var rectangle: Sprite2D = $Sight/Rectangle
 @onready var attaque: Area2D = $Attaque
+@onready var aggro: AudioStreamPlayer2D = $aggro
 
 @export var EstEnnemiFixe :bool 
 @export var DirectionInit:int
+@export var Only180Turn:bool
 
 var est_disparue : bool = false
 
@@ -20,6 +22,7 @@ var playerDetected:bool
 var playerInSight:bool
 
 var direction:Vector2
+var first_aggro = true
 
 const SPEED = 300.0
 const AGGRO_SPEED = 400.0
@@ -34,37 +37,42 @@ func _ready() -> void:
 		change_state(State.WALK)
 
 func _process(delta: float) -> void:
+	
 	if playerDetected:
 		sight_check()
 	match currentState:
 		State.LOOK:
 			velocity=Vector2.ZERO
 		State.WALK:
-			if is_blocked(delta):
-				#change_state(State.LOOK)
-				turn_right()
+			if is_blocked():
+				if Only180Turn:
+					turn_180()
+				else:
+					turn_right()
 			velocity=SPEED*direction
 		State.AGGRO:
+			if first_aggro:
+				first_aggro=false
+				aggro.play()
 			direction=(player.global_position-global_position).normalized()
 			velocity=AGGRO_SPEED*direction
 			if !playerInSight:
 				if EstEnnemiFixe:
 					change_state(State.LOOK)
+					first_aggro = true
 				else :
 					change_state(State.WALK)
+					first_aggro = true
 	
 	look_at_direction(direction)
 	move_and_slide()
 
 
 
-func is_blocked(delta):
-	var collide = move_and_collide(direction*delta,true,0.01)
-	if collide :
+func is_blocked():
+	if test_move(global_transform,direction*10):
 		return true
-	else :
-		return false
-
+	return false
 
 
 
@@ -97,6 +105,10 @@ func turn_right():
 	index = (index+1)%4
 	direction=DIRECTIONS[index]
 
+func turn_180():
+	index = (index+2)%4
+	direction=DIRECTIONS[index]
+
 func look_at_direction(dir):
 	sight.look_at(position+dir)
 	rectangle.look_at(position+dir)
@@ -104,7 +116,6 @@ func look_at_direction(dir):
 
 func _on_attaque_body_entered(body: Node2D) -> void:
 	for col in attaque.get_overlapping_bodies():
-		print(est_disparue)
 		if col is PlayerBody && not(est_disparue):
 			col.player_touched()
 			

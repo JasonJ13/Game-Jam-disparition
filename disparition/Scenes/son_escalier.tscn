@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckyppxn8fpcoy"]
+
+[ext_resource type="AudioStream" uid="uid://baqeglf3h0yl6" path="res://Assets/Sons/escalier.wav" id="1_qw88u"]
+
+[node name="son escalier" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_qw88u")
+volume_db = 4.643

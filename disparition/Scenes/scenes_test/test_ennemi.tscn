@@ -15,7 +15,7 @@ position = Vector2(123, 98)
 EstEnnemiFixe = true
 
 [node name="Player_main" parent="." instance=ExtResource("2_b8re4")]
-position = Vector2(495, 398)
+position = Vector2(474, 348)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 4

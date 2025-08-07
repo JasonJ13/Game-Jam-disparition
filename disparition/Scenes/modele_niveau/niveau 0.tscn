@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://7of46djc6h7u"]
+[gd_scene load_steps=8 format=4 uid="uid://7of46djc6h7u"]
 
 [ext_resource type="Script" uid="uid://dtbbw1jw2fr82" path="res://Scripts/niveau.gd" id="1_5d2qm"]
 [ext_resource type="PackedScene" uid="uid://csjpxr65v3w1o" path="res://Scenes/tilemap.tscn" id="2_6mqum"]
 [ext_resource type="PackedScene" uid="uid://bvs578803a2bq" path="res://Scenes/ennemi.tscn" id="3_dfndd"]
 [ext_resource type="PackedScene" uid="uid://7bqwnm6fx3ek" path="res://Scenes/Torche.tscn" id="4_qwry8"]
+[ext_resource type="PackedScene" uid="uid://ckyppxn8fpcoy" path="res://Scenes/son_escalier.tscn" id="5_6mqum"]
+[ext_resource type="PackedScene" uid="uid://c5favvcthbwcu" path="res://Scenes/pas_princesses.tscn" id="6_dfndd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8csoi"]
 size = Vector2(105, 112)
@@ -18,6 +20,7 @@ tile_map_data = PackedByteArray("AAAGAAEAAAAAAAQAAAAGAAIAAAACAAQAAAAGAAMAAAABAAQ
 [node name="Ennemi" parent="." instance=ExtResource("3_dfndd")]
 position = Vector2(159, 213)
 scale = Vector2(0.5, 0.5)
+Only180Turn = true
 
 [node name="debut" type="Node2D" parent="."]
 position = Vector2(165, 345)
@@ -54,5 +57,9 @@ side = "nord"
 [node name="Torche6" parent="Torche" instance=ExtResource("4_qwry8")]
 position = Vector2(482, 283)
 side = "nord"
+
+[node name="son escalier" parent="." instance=ExtResource("5_6mqum")]
+
+[node name="pas_princesses" parent="." instance=ExtResource("6_dfndd")]
 
 [connection signal="body_entered" from="fin" to="." method="zone_fin_atteinte"]
