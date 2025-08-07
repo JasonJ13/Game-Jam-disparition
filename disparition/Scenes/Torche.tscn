@@ -157,7 +157,6 @@ radius = 123.004
 
 [node name="Torche" type="Node2D"]
 script = ExtResource("1_iamxq")
-side = "ouest"
 
 [node name="source" type="PointLight2D" parent="."]
 color = Color(0.967611, 0.51184, 0.369777, 1)
@@ -167,7 +166,7 @@ texture = SubResource("GradientTexture2D_fpqlb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1hbwe")
-animation = &"ouest"
+animation = &"nord"
 autoplay = "nord"
 
 [node name="ZoneDetection" type="Area2D" parent="."]

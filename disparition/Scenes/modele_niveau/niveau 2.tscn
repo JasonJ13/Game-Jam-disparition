@@ -26,19 +26,19 @@ shape = SubResource("RectangleShape2D_2us38")
 [node name="Torche" type="Node" parent="."]
 
 [node name="Torche2" parent="Torche" instance=ExtResource("3_uuovb")]
-position = Vector2(494, 41)
-side = "nord"
+position = Vector2(588, 224)
+side = "est"
 
 [node name="Torche3" parent="Torche" instance=ExtResource("3_uuovb")]
-position = Vector2(348, 43)
+position = Vector2(224, 42)
 side = "nord"
 
 [node name="Torche4" parent="Torche" instance=ExtResource("3_uuovb")]
-position = Vector2(332, 168)
-side = "nord"
+position = Vector2(116, 224)
+side = "ouest"
 
 [node name="Torche5" parent="Torche" instance=ExtResource("3_uuovb")]
-position = Vector2(337, 295)
+position = Vector2(224, 298)
 side = "nord"
 
 [connection signal="body_entered" from="fin" to="." method="zone_fin_atteinte"]
