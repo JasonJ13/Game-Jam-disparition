@@ -87,9 +87,10 @@ func _on_sight_body_entered(body: Node2D) -> void:
 
 
 func _on_sight_body_exited(body: Node2D) -> void:
-	playerDetected=false
-	playerInSight=false
-	change_state(State.LOOK)
+	if body is PlayerBody :
+		playerDetected=false
+		playerInSight=false
+		change_state(State.LOOK)
 
 func sight_check():
 	var space_state = get_world_2d().direct_space_state
