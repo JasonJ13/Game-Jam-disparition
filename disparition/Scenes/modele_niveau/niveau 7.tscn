@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://d4gt1sq6a2xvy"]
+[gd_scene load_steps=8 format=4 uid="uid://d4gt1sq6a2xvy"]
 
 [ext_resource type="Script" uid="uid://dtbbw1jw2fr82" path="res://Scripts/niveau.gd" id="1_84wkv"]
 [ext_resource type="PackedScene" uid="uid://csjpxr65v3w1o" path="res://Scenes/tilemap.tscn" id="2_s2g4l"]
 [ext_resource type="PackedScene" uid="uid://7bqwnm6fx3ek" path="res://Scenes/Torche.tscn" id="3_uom31"]
 [ext_resource type="PackedScene" uid="uid://ckyppxn8fpcoy" path="res://Scenes/son_escalier.tscn" id="4_uom31"]
 [ext_resource type="PackedScene" uid="uid://c5favvcthbwcu" path="res://Scenes/pas_princesses.tscn" id="5_d637i"]
+[ext_resource type="PackedScene" uid="uid://bvs578803a2bq" path="res://Scenes/ennemi.tscn" id="6_d637i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j3jpw"]
 size = Vector2(30.5, 24.5)
@@ -51,5 +52,18 @@ side = "nord"
 [node name="son escalier" parent="." instance=ExtResource("4_uom31")]
 
 [node name="pas_princesses" parent="." instance=ExtResource("5_d637i")]
+
+[node name="Ennemi" parent="." instance=ExtResource("6_d637i")]
+position = Vector2(159, 287)
+EstEnnemiFixe = true
+
+[node name="Ennemi2" parent="." instance=ExtResource("6_d637i")]
+position = Vector2(157, 155)
+EstEnnemiFixe = true
+
+[node name="Ennemi3" parent="." instance=ExtResource("6_d637i")]
+position = Vector2(684, 288)
+EstEnnemiFixe = true
+DirectionInit = 0
 
 [connection signal="body_entered" from="fin" to="." method="zone_fin_atteinte"]

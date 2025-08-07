@@ -37,10 +37,6 @@ side = "ouest"
 position = Vector2(116, 160)
 side = "ouest"
 
-[node name="Torche4" parent="Torche" instance=ExtResource("3_dl1pk")]
-position = Vector2(524, 408)
-side = "est"
-
 [node name="Torche5" parent="Torche" instance=ExtResource("3_dl1pk")]
 position = Vector2(524, 96)
 side = "est"
@@ -60,12 +56,12 @@ EstEnnemiFixe = true
 DirectionInit = 0
 
 [node name="Ennemi3" parent="." instance=ExtResource("6_ipruw")]
-position = Vector2(216, 417)
+position = Vector2(164, 416)
 DirectionInit = 1
 Only180Turn = true
 
 [node name="Ennemi4" parent="." instance=ExtResource("6_ipruw")]
-position = Vector2(299, 90)
+position = Vector2(238, 91)
 DirectionInit = 3
 Only180Turn = true
 

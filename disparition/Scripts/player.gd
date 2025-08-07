@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x,0,SPEED)
 		velocity.y = move_toward(velocity.y,0,SPEED)
 
-	if Input.is_action_just_pressed("lancer un sort") :
+	if Input.is_action_just_pressed("lancer un sort") && !must_wait:
 		lancer_sort()
 		son = randi_range(1,3)
 		if son==1:
@@ -86,7 +86,7 @@ func set_pos(new_pos : Vector2) -> void :
 
 
 func lancer_sort() :
-	if sort_possible && !must_wait:
+	if sort_possible :
 		sort_possible = false
 
 		var angle = position.angle_to_point(get_global_mouse_position())
