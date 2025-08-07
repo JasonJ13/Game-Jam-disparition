@@ -6,7 +6,7 @@ class_name PlayerBody extends CharacterBody2D
 @onready var occus_3: AudioStreamPlayer2D = $occus/occus3
 @onready var mort: AudioStreamPlayer2D = $mort
 
-
+var son : int
 
 const SPEED = 300.0
 var deltaw : float
@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("lancer un sort") :
 		lancer_sort()
-		var son = randi_range(1,4)
+		son = randi_range(1,3)
 		if son==1:
 			occus_1.play()
 		elif son==2:
@@ -67,7 +67,14 @@ func _process(delta: float) -> void:
 
 
 func player_touched():
-	print("t mort lol")
+	
+	if son==1:
+		occus_1.stop()
+	elif son==2:
+		occus_2.stop()
+	elif son==3:
+		occus_3.stop()
+	
 	mort.play()
 	must_wait=true
 	await mort.finished
@@ -79,7 +86,7 @@ func set_pos(new_pos : Vector2) -> void :
 
 
 func lancer_sort() :
-	if sort_possible :
+	if sort_possible && !must_wait:
 		sort_possible = false
 
 		var angle = position.angle_to_point(get_global_mouse_position())
