@@ -37,7 +37,6 @@ func _ready() -> void:
 		change_state(State.WALK)
 
 func _process(delta: float) -> void:
-	
 	if playerDetected:
 		sight_check()
 	match currentState:
@@ -90,13 +89,17 @@ func _on_sight_body_exited(body: Node2D) -> void:
 	if body is PlayerBody :
 		playerDetected=false
 		playerInSight=false
-		change_state(State.LOOK)
+		if EstEnnemiFixe :
+			change_state(State.LOOK)
+		else :
+			change_state(State.WALK)
 
 func sight_check():
 	var space_state = get_world_2d().direct_space_state
 	var sightParameters = PhysicsRayQueryParameters2D.create(global_position,player.global_position,collision_mask,[self])
 	var sight_check = space_state.intersect_ray(sightParameters)
-	if len(sight_check)>0 and sight_check["collider"] is PlayerBody and player.est_visible:
+	
+	if len(sight_check)>0 and sight_check["collider"] is PlayerBody and player.est_visible and !est_disparue:
 		playerInSight=true
 		change_state(State.AGGRO)
 	else:

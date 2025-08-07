@@ -63,7 +63,7 @@ EstEnnemiFixe = true
 DirectionInit = 3
 
 [node name="Ennemi3" parent="." instance=ExtResource("6_ljy1h")]
-position = Vector2(96, 80)
+position = Vector2(96, 76)
 DirectionInit = 3
 Only180Turn = true
 

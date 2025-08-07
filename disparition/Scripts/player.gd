@@ -19,6 +19,8 @@ var est_visible=false
 var moving=false
 var walk_fx=false
 
+var torche_count:int
+
 func _physics_process(delta: float) -> void:
 	
 	var direction_x = Input.get_axis("Gauche","Droite")
@@ -62,6 +64,7 @@ func _process(delta: float) -> void:
 	if !moving :
 		walk_fx=false
 		audio_stream_player_2d.stop()
+	
 	
 
 
