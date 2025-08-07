@@ -56,12 +56,12 @@ EstEnnemiFixe = true
 DirectionInit = 0
 
 [node name="Ennemi3" parent="." instance=ExtResource("6_ipruw")]
-position = Vector2(164, 416)
+position = Vector2(229, 414)
 DirectionInit = 1
 Only180Turn = true
 
 [node name="Ennemi4" parent="." instance=ExtResource("6_ipruw")]
-position = Vector2(238, 91)
+position = Vector2(149, 91)
 DirectionInit = 3
 Only180Turn = true
 
