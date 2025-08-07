@@ -1,6 +1,9 @@
 extends Node
 class_name Niveau
 
+@onready var son_escalier: AudioStreamPlayer2D = $"son escalier"
+
+
 var player : CharacterBody2D
 var debut : Node2D
 var tiles : TileMapLayer
@@ -16,6 +19,7 @@ var est_corps_efface : bool
 var level_finissable = false
 
 func init_level(p : Node2D) -> void :
+	
 	debut = $debut
 
 	tiles = $TileMapLayer
@@ -30,6 +34,7 @@ func init_level(p : Node2D) -> void :
 
 func zone_fin_atteinte(body: Node2D) -> void:
 	if level_finissable :
+		son_escalier.play()
 		get_parent().level_suivant(body)
 
 

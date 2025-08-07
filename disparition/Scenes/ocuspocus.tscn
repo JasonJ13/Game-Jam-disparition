@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b76ycf7pu6rrg"]
+[gd_scene load_steps=5 format=3 uid="uid://b76ycf7pu6rrg"]
 
 [ext_resource type="Script" uid="uid://bovlcq0db7q2y" path="res://Scripts/ocuspocus.gd" id="1_ohy3a"]
+[ext_resource type="AudioStream" uid="uid://2mykkq6xl73g" path="res://Assets/Sons/sort_2.wav" id="2_7vbda"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ohy3a"]
 radius = 0.5
@@ -23,5 +24,9 @@ collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_7vbda")
+
+[node name="pailletes" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_7vbda")
+autoplay = true
 
 [connection signal="body_entered" from="Area2D" to="." method="ocuspocusbody"]

@@ -3,6 +3,7 @@ extends Node2D
 @export var nmb_niveau = 7
 
 @onready var player : Node2D = $Player
+@onready var disparition: AudioStreamPlayer2D = $disparition
 
 var niveau_indice = 0
 var niveau_act
@@ -52,12 +53,15 @@ func level_suivant(body : Node2D) -> void:
 func disparition_mur(position_mur : Vector2i) -> bool:
 	
 	player.sort_possible = true
+	disparition.play()
 	return niveau_act.disparition_mur(position_mur)
 
 func disparition_corps(corps : Node2D) :
 	if corps != player :
 		niveau_act.disparition_corps(corps)
 		player.sort_possible = true
+		disparition.play()
+
 
 func ocus_fail() :
 	player.sort_possible = true
