@@ -19,12 +19,10 @@ func _ready() -> void:
 		str_niv = "res://Scenes/modele_niveau/niveau "+str(i)+".tscn"
 		niveau.append(load(str_niv))
 	
-	new_level()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
 
 func new_level() -> void :
 	
@@ -78,3 +76,15 @@ func ajouter_sort_couche(indice : int, angle : float, p : Vector2) :
 	nouveau_sprit_sort.init(indice, angle, p)
 	
 	add_child(nouveau_sprit_sort)
+
+
+func _on_play_pressed() -> void:
+	new_level()
+
+
+func _on_level_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()
