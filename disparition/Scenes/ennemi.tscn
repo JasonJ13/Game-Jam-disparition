@@ -1,29 +1,139 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvs578803a2bq"]
+[gd_scene load_steps=22 format=3 uid="uid://bvs578803a2bq"]
 
 [ext_resource type="Script" uid="uid://2y87cbusvv3h" path="res://Scripts/ennemi.gd" id="1_2hvu8"]
 [ext_resource type="Texture2D" uid="uid://b0gwjucvfxi2k" path="res://Rectangle.jpg" id="1_5l417"]
 [ext_resource type="AudioStream" uid="uid://b80krncq1prey" path="res://Assets/Sons/metalgearsolid.mp3" id="3_hv4ss"]
+[ext_resource type="Texture2D" uid="uid://cacajk8plkgxg" path="res://Assets/princess-walk-down.png" id="4_fy5uh"]
+[ext_resource type="Texture2D" uid="uid://bj3qydpkb0nsm" path="res://Assets/princess-walk-up.png" id="5_vykdh"]
+[ext_resource type="Texture2D" uid="uid://dgjboh2sgnrau" path="res://Assets/princess-walk-left.png" id="6_xj07k"]
+[ext_resource type="Texture2D" uid="uid://bc8qgwxfiuwqp" path="res://Assets/princess-walk-right.png" id="7_a1uui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5l417"]
-size = Vector2(82, 77)
+size = Vector2(32, 52)
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_hv4ss"]
-points = PackedVector2Array(0, 0, 1052, 182, 1052, -182)
+points = PackedVector2Array(0, 0, 500, 100, 500, -100)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2hvu8"]
-radius = 64.6297
+radius = 30.5941
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmne8"]
+atlas = ExtResource("4_fy5uh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf5pu"]
+atlas = ExtResource("5_vykdh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klphm"]
+atlas = ExtResource("4_fy5uh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yp4x"]
+atlas = ExtResource("4_fy5uh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3kfc"]
+atlas = ExtResource("6_xj07k")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1y78k"]
+atlas = ExtResource("6_xj07k")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffxse"]
+atlas = ExtResource("7_a1uui")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_war48"]
+atlas = ExtResource("7_a1uui")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37k6a"]
+atlas = ExtResource("5_vykdh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11d5c"]
+atlas = ExtResource("5_vykdh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wtirc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmne8")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf5pu")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klphm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yp4x")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3kfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1y78k")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffxse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_war48")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37k6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11d5c")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
 
 [node name="Ennemi" type="CharacterBody2D"]
+scale = Vector2(2, 2)
 collision_layer = 24
 collision_mask = 13
 script = ExtResource("1_2hvu8")
 DirectionInit = 2
 
 [node name="Rectangle" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.087, 0.08)
 texture = ExtResource("1_5l417")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 3)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_5l417")
 debug_color = Color(0.837689, 0.230216, 0.767366, 0.42)
@@ -37,6 +147,7 @@ position = Vector2(2, -2)
 shape = SubResource("ConvexPolygonShape2D_hv4ss")
 
 [node name="Rectangle" type="Sprite2D" parent="Sight"]
+visible = false
 position = Vector2(200, 0)
 scale = Vector2(0.504219, 0.0427215)
 texture = ExtResource("1_5l417")
@@ -52,6 +163,11 @@ debug_color = Color(0.984612, 0, 0.341881, 0.42)
 [node name="aggro" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_hv4ss")
 volume_db = -3.273
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wtirc")
+animation = &"idle_down"
+autoplay = "idle_down"
 
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]
