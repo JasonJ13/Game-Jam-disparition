@@ -4,6 +4,7 @@ class_name Niveau
 var player : CharacterBody2D
 var debut : Node2D
 var tiles : TileMapLayer
+var torches : Node
 
 var tuile_effacee : Vector2i
 var est_tuile_effacee : bool
@@ -16,6 +17,9 @@ var level_finissable = false
 
 func init_level(p : Node2D) -> void :
 	debut = $debut
+
+	tiles = $TileMapLayer
+	torches = $Torche
 	
 	player = p
 	player.set_pos(debut.position)
@@ -43,21 +47,29 @@ func reaparition() -> void :
 			
 			if ( altasvoisin.x > 3 || altasvoisin.y < 4) && altasvoisin != Vector2i(-1,-1):
 				tiles.set_cells_terrain_connect([voisin],0,0, false)
+				
+		for t in torches.get_children() :
+			if (Vector2i(t.position)/64 == tuile_effacee) :
+				t.show()
+				
+		if Vector2i(player.position)/64 == tuile_effacee && tiles.get_cell_atlas_coords(tuile_effacee).x > 3 :
+			player.player_touched() 
 		
 
 	
 	elif est_corps_efface :
 		est_corps_efface = false
 		
-		corps_efface.set_process(true)
-		corps_efface.show()
+		corps_efface.apparue()
 		
 
 
 
-func disparition_mur(position_mur : Vector2i) -> void :
+func disparition_mur(position_mur : Vector2i) -> bool :
 	
-	tiles = $TileMapLayer
+	var atlas_mur = tiles.get_cell_atlas_coords(position_mur)
+	if ( atlas_mur.x < 4 && atlas_mur.y > 3) :
+		return false
 
 	if position_mur.x > 0 && position_mur.x < 12 && position_mur.y >= 0 && position_mur.y < 7:
 		reaparition()
@@ -66,12 +78,17 @@ func disparition_mur(position_mur : Vector2i) -> void :
 		tiles.set_cell(position_mur, 0, Vector2i(2,4))
 		for voisin in tiles.get_surrounding_cells(position_mur) :
 			altasvoisin = tiles.get_cell_atlas_coords(voisin)
-			if( altasvoisin.x > 3 || altasvoisin.y < 4) :
+			if ( altasvoisin.x > 3 || altasvoisin.y < 4) :
 				tiles.set_cells_terrain_connect([voisin],0,-1, false)
 				tiles.set_cells_terrain_connect([voisin],0,0, false)
 		tuile_effacee = position_mur
 		
-		
+		for t in torches.get_children() :
+			if (Vector2i(t.position)/64 == position_mur) :
+				t.hide()
+			
+	return true
+
 
 func disparition_corps(body : Node2D) -> void :
 	tiles = $TileMapLayer
@@ -82,6 +99,5 @@ func disparition_corps(body : Node2D) -> void :
 		est_corps_efface = true
 		
 		corps_efface = body
-		body.set_process(false)
-		body.hide()
+		body.disparue()
 	

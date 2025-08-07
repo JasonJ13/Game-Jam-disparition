@@ -49,9 +49,10 @@ func level_suivant(body : Node2D) -> void:
 
 
 
-func disparition_mur(position_mur : Vector2i) :
-	niveau_act.disparition_mur(position_mur)
+func disparition_mur(position_mur : Vector2i) -> bool:
+	
 	player.sort_possible = true
+	return niveau_act.disparition_mur(position_mur)
 
 func disparition_corps(corps : Node2D) :
 	if corps != player :
