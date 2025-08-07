@@ -101,7 +101,7 @@ func play_pas_princesses():
 	var children = get_children()
 	for child in children:
 		if child is Ennemi:
-			if !child.est_disparue and !child.currentState != child.State.LOOK and !playing_pas:
+			if !child.est_disparue and child.currentState != child.State.LOOK and !playing_pas:
 				pas_princesses.play()
 				playing_pas=true
 				await pas_princesses.finished

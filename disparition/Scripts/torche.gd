@@ -40,9 +40,13 @@ func orientation(face : String)  -> void :
 func _on_zone_detection_body_entered(body: Node2D) -> void:
 	if body is PlayerBody:
 		body.change_visibilte(true)
+		body.torche_count+=1
+		
 
 
 func _on_zone_detection_body_exited(body: Node2D) -> void:
 	if body is PlayerBody:
-		body.change_visibilte(false)
+		body.torche_count-=1
+		if body.torche_count==0:
+			body.change_visibilte(false)
 		
