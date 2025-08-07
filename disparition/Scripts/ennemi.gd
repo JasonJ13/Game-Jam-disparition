@@ -6,6 +6,7 @@ class_name Ennemi extends CharacterBody2D
 
 @export var EstEnnemiFixe :bool 
 @export var DirectionInit:int
+@export var Only180Turn:bool
 
 var est_disparue : bool = false
 
@@ -34,15 +35,18 @@ func _ready() -> void:
 		change_state(State.WALK)
 
 func _process(delta: float) -> void:
+	
 	if playerDetected:
 		sight_check()
 	match currentState:
 		State.LOOK:
 			velocity=Vector2.ZERO
 		State.WALK:
-			if is_blocked(delta):
-				#change_state(State.LOOK)
-				turn_right()
+			if is_blocked():
+				if Only180Turn:
+					turn_180()
+				else:
+					turn_right()
 			velocity=SPEED*direction
 		State.AGGRO:
 			direction=(player.global_position-global_position).normalized()
@@ -58,13 +62,10 @@ func _process(delta: float) -> void:
 
 
 
-func is_blocked(delta):
-	var collide = move_and_collide(direction*delta,true,0.01)
-	if collide :
+func is_blocked():
+	if test_move(global_transform,direction*10):
 		return true
-	else :
-		return false
-
+	return false
 
 
 
@@ -95,6 +96,10 @@ func sight_check():
 
 func turn_right():
 	index = (index+1)%4
+	direction=DIRECTIONS[index]
+
+func turn_180():
+	index = (index+2)%4
 	direction=DIRECTIONS[index]
 
 func look_at_direction(dir):

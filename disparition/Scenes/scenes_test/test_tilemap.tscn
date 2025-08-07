@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=4 uid="uid://hr4gdxpfosu7"]
 
-[ext_resource type="PackedScene" path="res://Scenes/tilemap.tscn" id="1_yysss"]
+[ext_resource type="PackedScene" uid="uid://csjpxr65v3w1o" path="res://Scenes/tilemap.tscn" id="1_yysss"]
 [ext_resource type="PackedScene" uid="uid://bvs578803a2bq" path="res://Scenes/ennemi.tscn" id="2_54dix"]
 [ext_resource type="PackedScene" uid="uid://dp1hvq6vx6amw" path="res://Scenes/player.tscn" id="3_8jqwf"]
 [ext_resource type="PackedScene" uid="uid://7bqwnm6fx3ek" path="res://Scenes/Torche.tscn" id="4_yysss"]
@@ -14,7 +14,8 @@ tile_map_data = PackedByteArray("AAAGAAEAAAAEAAUAAAAGAAIAAAAEAAYAAAAGAAMAAAAEAAU
 position = Vector2(101, 220)
 
 [node name="Player_main" parent="." instance=ExtResource("3_8jqwf")]
-position = Vector2(226, 358)
+visible = false
+position = Vector2(87, 364)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.439049, 0.439049, 0.439049, 1)
