@@ -7,6 +7,8 @@ class_name Ennemi extends CharacterBody2D
 @export var EstEnnemiFixe :bool 
 @export var DirectionInit:int
 
+var est_disparue : bool = false
+
 enum State{LOOK, WALK, AGGRO}
 
 const DIRECTIONS = [Vector2.LEFT,Vector2.UP,Vector2.RIGHT,Vector2.DOWN]
@@ -102,6 +104,19 @@ func look_at_direction(dir):
 
 func _on_attaque_body_entered(body: Node2D) -> void:
 	for col in attaque.get_overlapping_bodies():
-		if col is PlayerBody:
+		print(est_disparue)
+		if col is PlayerBody && not(est_disparue):
 			col.player_touched()
 			
+
+
+func disparue() -> void :
+	est_disparue = true
+	set_process_mode(Node.PROCESS_MODE_DISABLED)
+	hide()
+	
+
+func apparue() -> void :
+	set_process_mode(Node.PROCESS_MODE_INHERIT)
+	show()
+	est_disparue = false

@@ -10,7 +10,8 @@ size = Vector2(81, 70)
 polygon = PackedVector2Array(10.3717, -13.2318, -10.3717, -13.2318, -10.3717, 13.2318, 10.3717, 13.2318)
 
 [node name="Node2D" type="CharacterBody2D"]
-collision_mask = 28
+collision_layer = 17
+collision_mask = 12
 script = ExtResource("1_e21d1")
 
 [node name="Rectangle" type="Sprite2D" parent="."]
