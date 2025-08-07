@@ -2,7 +2,9 @@ extends Node
 class_name Niveau
 
 @onready var son_escalier: AudioStreamPlayer2D = $"son escalier"
+@onready var pas_princesses: AudioStreamPlayer = $pas_princesses
 
+var playing_pas=false
 
 var player : CharacterBody2D
 var debut : Node2D
@@ -67,7 +69,8 @@ func reaparition() -> void :
 		
 		corps_efface.apparue()
 		
-
+func _process(delta: float) -> void:
+	play_pas_princesses()
 
 
 func disparition_mur(position_mur : Vector2i) -> bool :
@@ -93,6 +96,17 @@ func disparition_mur(position_mur : Vector2i) -> bool :
 				t.hide()
 			
 	return true
+
+func play_pas_princesses():
+	var children = get_children()
+	for child in children:
+		if child is Ennemi:
+			if !child.est_disparue and !child.currentState != child.State.LOOK and !playing_pas:
+				pas_princesses.play()
+				playing_pas=true
+				await pas_princesses.finished
+				playing_pas=false
+		
 
 
 func disparition_corps(body : Node2D) -> void :
