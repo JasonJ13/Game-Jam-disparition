@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://62kyp3bg4jea"]
+
+[ext_resource type="Script" uid="uid://cgm2lppxlf5wy" path="res://Scripts/toutenchaine.gd" id="1_t3m5x"]
+[ext_resource type="PackedScene" uid="uid://dp1hvq6vx6amw" path="res://Scenes/player.tscn" id="2_cwllj"]
+[ext_resource type="AudioStream" uid="uid://wn8nqcnevvea" path="res://Assets/Sons/vanishing-sfx-37098.mp3" id="3_weact"]
+
+[node name="toutenchaine" type="Node2D"]
+script = ExtResource("1_t3m5x")
+
+[node name="Player" parent="." instance=ExtResource("2_cwllj")]
+z_index = 1
+scale = Vector2(0.5, 0.5)
+collision_layer = 5
+collision_mask = 5
+
+[node name="Camera" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(1.4, 1.4)
+
+[node name="disparition" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_weact")
