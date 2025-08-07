@@ -4,6 +4,7 @@ class_name Ennemi extends CharacterBody2D
 @onready var rectangle: Sprite2D = $Sight/Rectangle
 @onready var attaque: Area2D = $Attaque
 @onready var aggro: AudioStreamPlayer2D = $aggro
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var EstEnnemiFixe :bool 
 @export var DirectionInit:int
@@ -23,6 +24,7 @@ var playerInSight:bool
 
 var direction:Vector2
 var first_aggro = true
+var was_up=false
 
 const SPEED = 300.0
 const AGGRO_SPEED = 400.0
@@ -63,6 +65,26 @@ func _process(delta: float) -> void:
 					change_state(State.WALK)
 					first_aggro = true
 	
+	if velocity != Vector2.ZERO :
+		if velocity.x>velocity.y:
+			if velocity.x>0:
+				anim.play("walk_front")
+				was_up=false
+			else:
+				anim.play("walk_up")
+				was_up=true
+		else :
+			if velocity.y>0:
+				anim.play("walk_right")
+				was_up=false
+			else:
+				anim.play("walk_left")
+				was_up=false
+	else :
+		if was_up:
+			anim.play("idle_up")
+		else:
+			anim.play("idle_front")
 	look_at_direction(direction)
 	move_and_slide()
 
