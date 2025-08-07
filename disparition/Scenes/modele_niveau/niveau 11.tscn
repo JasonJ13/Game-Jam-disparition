@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://bq4m2xuhi4aq"]
+[gd_scene load_steps=7 format=4 uid="uid://bq4m2xuhi4aq"]
 
 [ext_resource type="Script" uid="uid://dtbbw1jw2fr82" path="res://Scripts/niveau.gd" id="1_3blk5"]
 [ext_resource type="PackedScene" uid="uid://csjpxr65v3w1o" path="res://Scenes/tilemap.tscn" id="2_hf7wt"]
 [ext_resource type="PackedScene" uid="uid://7bqwnm6fx3ek" path="res://Scenes/Torche.tscn" id="3_muwfj"]
+[ext_resource type="PackedScene" uid="uid://ckyppxn8fpcoy" path="res://Scenes/son_escalier.tscn" id="4_muwfj"]
+[ext_resource type="PackedScene" uid="uid://c5favvcthbwcu" path="res://Scenes/pas_princesses.tscn" id="5_87vvx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgjyp"]
 size = Vector2(40, 35.5)
@@ -37,5 +39,9 @@ side = "nord"
 [node name="Torche6" parent="Torche" instance=ExtResource("3_muwfj")]
 position = Vector2(544, 234)
 side = "nord"
+
+[node name="son escalier" parent="." instance=ExtResource("4_muwfj")]
+
+[node name="pas_princesses" parent="." instance=ExtResource("5_87vvx")]
 
 [connection signal="body_entered" from="fin" to="." method="zone_fin_atteinte"]

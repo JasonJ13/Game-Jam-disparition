@@ -23,14 +23,11 @@ func init(cf : Vector2, a : float) -> void :
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	tile = Vector2i(position)/64
-	
-	if linear_velocity.distance_to(previous_velo) != 0 :
-		print(linear_velocity.distance_to(previous_velo))
+
 	#if linear_velocity.distance_to(previous_velo) > 11 :
 	if true :
 		if get_parent().disparition_mur(tile) :
 			queue_free()
-			print()
 	
 	previous_velo = linear_velocity
 	
