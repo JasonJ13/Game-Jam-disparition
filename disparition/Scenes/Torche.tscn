@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://7bqwnm6fx3ek"]
+[gd_scene load_steps=27 format=3 uid="uid://7bqwnm6fx3ek"]
 
 [ext_resource type="Script" uid="uid://cgu26n2ajjfkm" path="res://Scripts/torche.gd" id="1_iamxq"]
 [ext_resource type="Texture2D" uid="uid://c4atci4mtk1sy" path="res://Assets/torche/torche nord.png" id="1_wgix6"]
 [ext_resource type="Texture2D" uid="uid://d1cou4263tj1c" path="res://Assets/torche/torche est.png" id="2_f5yay"]
 [ext_resource type="Texture2D" uid="uid://d6kv1c2j2gc1" path="res://Assets/torche/torche ouest.png" id="3_f5yay"]
 [ext_resource type="Texture2D" uid="uid://cbi5a7isae16r" path="res://Assets/torche/torche sud.png" id="3_x2ksu"]
+[ext_resource type="AudioStream" uid="uid://c4snn8kgjioaj" path="res://Assets/Sons/torche.wav" id="6_1hbwe"]
 
 [sub_resource type="Gradient" id="Gradient_f8mjo"]
 offsets = PackedFloat32Array(0, 0.684524, 1)
@@ -175,6 +176,13 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneDetection"]
 shape = SubResource("CircleShape2D_f5yay")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_1hbwe")
+volume_db = -2.786
+autoplay = true
+max_distance = 200.0
+attenuation = 3.24901
 
 [connection signal="body_entered" from="ZoneDetection" to="." method="_on_zone_detection_body_entered"]
 [connection signal="body_exited" from="ZoneDetection" to="." method="_on_zone_detection_body_exited"]

@@ -3,6 +3,7 @@ class_name Ennemi extends CharacterBody2D
 @onready var sight: Area2D = $Sight
 @onready var rectangle: Sprite2D = $Sight/Rectangle
 @onready var attaque: Area2D = $Attaque
+@onready var aggro: AudioStreamPlayer2D = $aggro
 
 @export var EstEnnemiFixe :bool 
 @export var DirectionInit:int
@@ -21,6 +22,7 @@ var playerDetected:bool
 var playerInSight:bool
 
 var direction:Vector2
+var first_aggro = true
 
 const SPEED = 300.0
 const AGGRO_SPEED = 400.0
@@ -49,13 +51,18 @@ func _process(delta: float) -> void:
 					turn_right()
 			velocity=SPEED*direction
 		State.AGGRO:
+			if first_aggro:
+				first_aggro=false
+				aggro.play()
 			direction=(player.global_position-global_position).normalized()
 			velocity=AGGRO_SPEED*direction
 			if !playerInSight:
 				if EstEnnemiFixe:
 					change_state(State.LOOK)
+					first_aggro = true
 				else :
 					change_state(State.WALK)
+					first_aggro = true
 	
 	look_at_direction(direction)
 	move_and_slide()
@@ -109,7 +116,6 @@ func look_at_direction(dir):
 
 func _on_attaque_body_entered(body: Node2D) -> void:
 	for col in attaque.get_overlapping_bodies():
-		print(est_disparue)
 		if col is PlayerBody && not(est_disparue):
 			col.player_touched()
 			

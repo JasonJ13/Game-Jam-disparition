@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5favvcthbwcu"]
+
+[ext_resource type="AudioStream" uid="uid://dn2f4bdlo4fpt" path="res://Assets/Sons/heelswav-14843.mp3" id="1_irblb"]
+
+[node name="pas_princesses" type="AudioStreamPlayer"]
+stream = ExtResource("1_irblb")
+volume_db = -5.571
