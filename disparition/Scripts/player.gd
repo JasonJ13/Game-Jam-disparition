@@ -5,6 +5,7 @@ class_name PlayerBody extends CharacterBody2D
 @onready var occus_2: AudioStreamPlayer2D = $occus/occus2
 @onready var occus_3: AudioStreamPlayer2D = $occus/occus3
 @onready var mort: AudioStreamPlayer2D = $mort
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
 var son : int
 
@@ -17,6 +18,7 @@ const sort = preload("res://Scenes/ocuspocus.tscn")
 var sort_possible = true
 var est_visible=false
 var moving=false
+var was_up=true
 var walk_fx=false
 
 var torche_count:int
@@ -32,8 +34,27 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		moving=true
 		velocity=direction*SPEED
+		if velocity.x>velocity.y:
+			if velocity.x>0:
+				anim.play("walk_front")
+				was_up=false
+			else:
+				anim.play("walk_up")
+				was_up=true
+		else :
+			if velocity.y>0:
+				anim.play("walk_right")
+				was_up=false
+			else:
+				anim.play("walk_left")
+				was_up=false
+		
 	else :
 		moving=false
+		if was_up:
+			anim.play("idle_up")
+		else:
+			anim.play("idle_front")
 		velocity.x = move_toward(velocity.x,0,SPEED)
 		velocity.y = move_toward(velocity.y,0,SPEED)
 
