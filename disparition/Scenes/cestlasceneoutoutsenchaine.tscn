@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://0giawt4i6ql8"]
+[gd_scene load_steps=7 format=4 uid="uid://0giawt4i6ql8"]
 
 [ext_resource type="Script" uid="uid://let8xoafxxd0" path="res://Scripts/goblegicien_menu.gd" id="1_u4oa4"]
 [ext_resource type="Texture2D" uid="uid://c7naynjclqova" path="res://Assets/TileMap-goblingicien.png" id="2_n4pq4"]
 [ext_resource type="Texture2D" uid="uid://b0gwjucvfxi2k" path="res://Rectangle.jpg" id="3_ijpa5"]
+[ext_resource type="AudioStream" uid="uid://cjms4ce2pckcb" path="res://goblegicien.wav" id="4_cal40"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ijpa5"]
 texture = ExtResource("2_n4pq4")
@@ -123,6 +124,10 @@ text = "Niveaux"
 [node name="Quit" type="Button" parent="Menu/HBoxContainer"]
 layout_mode = 2
 text = "Quitter"
+
+[node name="Goblegicien" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_cal40")
+autoplay = true
 
 [connection signal="pressed" from="Menu/HBoxContainer/Play" to="." method="Play"]
 [connection signal="pressed" from="Menu/HBoxContainer/Quit" to="." method="leave_game"]

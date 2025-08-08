@@ -33,11 +33,11 @@ position = Vector2(416, 396)
 side = "sud"
 
 [node name="Torche3" parent="Torche" instance=ExtResource("2_7i7oi")]
-position = Vector2(268, 220)
+position = Vector2(51, 223)
 side = "est"
 
 [node name="Torche4" parent="Torche" instance=ExtResource("2_7i7oi")]
-position = Vector2(564, 220)
+position = Vector2(841, 224)
 side = "ouest"
 
 [node name="son escalier" parent="." instance=ExtResource("4_abvpu")]
